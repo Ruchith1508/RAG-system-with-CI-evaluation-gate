@@ -1,0 +1,101 @@
+{
+  "summary": {
+    "total_questions": 10,
+    "mean_faithfulness": 0.7875,
+    "pass_rate": 1.0,
+    "threshold": 0.7,
+    "passed_ci": true
+  },
+  "results": [
+    {
+      "question": "What architecture does the Transformer use instead of recurrence?",
+      "expected_answer": "The Transformer uses self-attention mechanisms instead of recurrence and convolutions.",
+      "generated_answer": "The Transformer uses self-attention instead of recurrence [Source 1]. It relies entirely on an attention mechanism to draw global dependencies between input and output [Source 1]. The Transformer follows an encoder-decoder structure, using stacked self-attention and point-wise, fully connected layers for both the encoder and decoder [Source 2]. Specifically, it uses multi-head self-attention mechanisms [Source 4]. This architecture allows for significantly more parallelization [Source 1].",
+      "faithfulness_score": 0.75,
+      "reasoning": "The answer accurately describes the Transformer's use of self-attention and encoder-decoder structure, but lacks direct support for the claim that the architecture allows for significantly more parallelization, which is only mentioned as a benefit in Source 1, not a direct characteristic of the architecture.",
+      "passed": true,
+      "source_paper": "Attention Is All You Need"
+    },
+    {
+      "question": "How many attention heads does the Transformer use?",
+      "expected_answer": "The Transformer uses 8 parallel attention heads.",
+      "generated_answer": "The Transformer uses multi-head attention with h = 8 parallel attention layers, or heads [Source 1].",
+      "faithfulness_score": 0.75,
+      "reasoning": "The answer is mostly supported by Source 1, but the exact number of heads (h = 8) is not explicitly mentioned in the source, only implied by the multi-head attention formula.",
+      "passed": true,
+      "source_paper": "Attention Is All You Need"
+    },
+    {
+      "question": "What BLEU score did the Transformer big model achieve on English to German translation?",
+      "expected_answer": "The Transformer big model achieved a BLEU score of 28.4 on the WMT 2014 English to German translation task.",
+      "generated_answer": "The Transformer big model achieved a BLEU score of 28.4 on the WMT 2014 English-to-German translation task [Source 1], [Source 2], [Source 5]. This score establishes a new state-of-the-art, outperforming the best previously reported models by more than 2.0 BLEU [Source 1], [Source 2].",
+      "faithfulness_score": 0.75,
+      "reasoning": "The answer is mostly supported by the sources, but the claim that the Transformer big model outperformed the best previously reported models by more than 2.0 BLEU is not directly supported by the sources, which only mention the model's performance compared to the base model.",
+      "passed": true,
+      "source_paper": "Attention Is All You Need"
+    },
+    {
+      "question": "What is scaled dot-product attention?",
+      "expected_answer": "Scaled dot-product attention computes dot products of queries with all keys, divides by the square root of the key dimension, and applies softmax to get weights on values.",
+      "generated_answer": "Scaled dot-product attention is an attention function that computes the dot products of the query with all keys, divides each by \u221adk, and applies a softmax function to obtain the weights on the values [Source 1]. It is also known as \"Scaled Dot-Product Attention\" [Source 2]. The input consists of queries and keys of dimension dk, and values of dimension dv [Source 1]. The attention function is computed as a weighted sum of the values, where the weight assigned to each value is computed by a compatibility function of the query with the corresponding key [Source 2]. \n\nIn practice, the attention function is computed on a set of queries simultaneously, packed together into a matrix Q, and the keys and values are also packed together into matrices K and V [Source 1]. The matrix of outputs is computed as Attention(Q, K, V) = softmax(QK^T / \u221adk) * V [Source 1]. \n\nThe scaling factor of 1/\u221adk is used to counteract the effect of large dot products, which can push the softmax function into regions where it has extremely small gradients [Source 1].",
+      "faithfulness_score": 0.875,
+      "reasoning": "The generated answer accurately represents the scaled dot-product attention mechanism, but it includes some minor unsupported claims and slightly rephrased sentences from the sources.",
+      "passed": true,
+      "source_paper": "Attention Is All You Need"
+    },
+    {
+      "question": "What does BERT stand for?",
+      "expected_answer": "BERT stands for Bidirectional Encoder Representations from Transformers.",
+      "generated_answer": "BERT stands for Bidirectional Encoder Representations from Transformers [Source 1].",
+      "faithfulness_score": 1.0,
+      "reasoning": "The answer is directly supported by Source 1, which explicitly states the meaning of BERT.",
+      "passed": true,
+      "source_paper": "BERT"
+    },
+    {
+      "question": "What is masked language modeling in BERT?",
+      "expected_answer": "Masked language modeling randomly masks some percentage of input tokens and trains the model to predict those masked tokens, enabling bidirectional pre-training.",
+      "generated_answer": "Masked language modeling in BERT is a procedure where some percentage of the input tokens are masked at random, and then predicted [Source 1]. This procedure is referred to as a \"masked LM\" (MLM) and is used to train a deep bidirectional representation [Source 1]. The MLM model enables the representation to fuse the left and the right context, allowing for pre-training of a deep bidirectional Transformer [Source 2]. In BERT, 15% of all WordPiece tokens in each sequence are masked at random [Source 1]. The masked tokens are then predicted using the final hidden vectors corresponding to the mask tokens, which are fed into an output softmax over the vocabulary [Source 1].",
+      "faithfulness_score": 0.75,
+      "reasoning": "The generated answer mostly accurately represents the source chunks, but it does not explicitly mention that the two unsupervised tasks are the next sentence prediction and the masked language modeling tasks, which are described in Source 1.",
+      "passed": true,
+      "source_paper": "BERT"
+    },
+    {
+      "question": "What two tasks does BERT use for pre-training?",
+      "expected_answer": "BERT uses masked language modeling (MLM) and next sentence prediction (NSP) for pre-training.",
+      "generated_answer": "BERT uses two tasks for pre-training: Masked Language Modeling (MLM) and Next Sentence Prediction (NSP) [Source 2]. In the MLM task, some percentage of the input tokens are masked at random, and the model predicts those masked tokens [Source 2]. The NSP task involves jointly pre-training text-pair representations to predict whether two sentences are adjacent in the original text [Source 2].",
+      "faithfulness_score": 0.75,
+      "reasoning": "The answer accurately describes the two pre-training tasks of BERT, but Source 2 does not explicitly mention the NSP task's goal of predicting whether two sentences are adjacent in the original text.",
+      "passed": true,
+      "source_paper": "BERT"
+    },
+    {
+      "question": "What does RAG stand for and what problem does it solve?",
+      "expected_answer": "RAG stands for Retrieval-Augmented Generation. It combines a retrieval component with a generator to produce more factual and specific text than standard language models.",
+      "generated_answer": "RAG stands for Retrieval-Augmented Generation [Source 1]. It solves the problem of generating more factual and specific text by combining parametric and non-parametric knowledge [Source 1]. This approach helps to reduce \"hallucination\" in language generation, making it more grounded in real factual knowledge [Source 1]. RAG achieves this by using a retrieval component to retrieve relevant documents and a generation component to generate text based on the retrieved documents [Source 3].",
+      "faithfulness_score": 0.75,
+      "reasoning": "The answer mostly accurately represents the sources, but it incorrectly implies that RAG solves the problem of generating more factual and specific text by combining parametric and non-parametric knowledge, whereas the sources only mention that people prefer RAG's generation over BART.",
+      "passed": true,
+      "source_paper": "Retrieval-Augmented Generation"
+    },
+    {
+      "question": "What are the two RAG model variants?",
+      "expected_answer": "The two RAG variants are RAG-Sequence, which uses the same retrieved document for the entire sequence, and RAG-Token, which can use different documents for each token.",
+      "generated_answer": "The two RAG model variants are RAG-Token and RAG-Sequence [Source 1].",
+      "faithfulness_score": 0.75,
+      "reasoning": "The generated answer is mostly supported by the sources, but Source 3 and Source 4 imply that RAG-Token performs better than RAG-Sequence on Jeopardy question generation, which is not explicitly mentioned in the other sources.",
+      "passed": true,
+      "source_paper": "Retrieval-Augmented Generation"
+    },
+    {
+      "question": "What is the Dense Passage Retriever and how does RAG use it?",
+      "expected_answer": "RAG uses a Dense Passage Retriever (DPR) as its retrieval component to retrieve relevant documents.",
+      "generated_answer": "The Dense Passage Retriever (DPR) is a retrieval component used in RAG models [Source 3]. It follows a bi-encoder architecture, where a query representation is produced by a query encoder and a document representation is produced by a document encoder, both based on BERTBASE [Source 3]. The retriever is trained to retrieve documents that contain answers to questions [Source 3]. RAG uses DPR to retrieve text documents and use them as additional context when generating the target sequence [Source 1]. The retriever returns a distribution over text passages given a query, and the top-K documents are retrieved using this distribution [Source 1]. \n\nRAG has two models, RAG-Sequence and RAG-Token, which use the retrieved document in different ways [Source 3]. In RAG-Sequence, the same retrieved document is used to generate the complete sequence [Source 3], while in RAG-Token, a different latent document can be drawn for each target token [Source 3]. The generator component in RAG can be modeled using any encoder-decoder, and BART is used in this case [Source 3]. \n\nThe effectiveness of the retrieval mechanism in RAG is assessed through ablations, where freezing the retriever during training results in lower performance [Source 5]. Additionally, RAG's dense retriever is compared to a word overlap-based BM25 retriever, and the results show that differentiable retrieval improves results on most tasks [Source 5].",
+      "faithfulness_score": 0.75,
+      "reasoning": "The generated answer mostly accurately describes the Dense Passage Retriever and its usage in RAG, but it includes some minor unsupported claims, such as the effectiveness of the retrieval mechanism being assessed through ablations and the comparison to a word overlap-based BM25 retriever, which are not directly supported by the provided source chunks.",
+      "passed": true,
+      "source_paper": "Retrieval-Augmented Generation"
+    }
+  ]
+}

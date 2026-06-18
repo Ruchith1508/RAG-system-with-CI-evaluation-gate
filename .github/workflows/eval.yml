@@ -1,0 +1,39 @@
+name: RAG Evaluation CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  evaluate:
+    name: Faithfulness Gate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install pypdf tiktoken chromadb sentence-transformers groq python-dotenv pyyaml loguru rank-bm25
+
+      - name: Run evaluation pipeline
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python3 -m src.evaluator
+        # Exit code 1 = faithfulness below threshold = build fails
+        # Exit code 2 = all questions skipped (rate limit) = build fails
+
+      - name: Upload eval report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-report
+          path: data/eval_report.json

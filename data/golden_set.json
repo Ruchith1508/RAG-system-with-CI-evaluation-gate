@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What architecture does the Transformer use instead of recurrence?",
+    "expected_answer": "The Transformer uses self-attention mechanisms instead of recurrence and convolutions.",
+    "source_paper": "Attention Is All You Need"
+  },
+  {
+    "question": "How many attention heads does the Transformer use?",
+    "expected_answer": "The Transformer uses 8 parallel attention heads.",
+    "source_paper": "Attention Is All You Need"
+  },
+  {
+    "question": "What BLEU score did the Transformer big model achieve on English to German translation?",
+    "expected_answer": "The Transformer big model achieved a BLEU score of 28.4 on the WMT 2014 English to German translation task.",
+    "source_paper": "Attention Is All You Need"
+  },
+  {
+    "question": "What is scaled dot-product attention?",
+    "expected_answer": "Scaled dot-product attention computes dot products of queries with all keys, divides by the square root of the key dimension, and applies softmax to get weights on values.",
+    "source_paper": "Attention Is All You Need"
+  },
+  {
+    "question": "What does BERT stand for?",
+    "expected_answer": "BERT stands for Bidirectional Encoder Representations from Transformers.",
+    "source_paper": "BERT"
+  },
+  {
+    "question": "What is masked language modeling in BERT?",
+    "expected_answer": "Masked language modeling randomly masks some percentage of input tokens and trains the model to predict those masked tokens, enabling bidirectional pre-training.",
+    "source_paper": "BERT"
+  },
+  {
+    "question": "What two tasks does BERT use for pre-training?",
+    "expected_answer": "BERT uses masked language modeling (MLM) and next sentence prediction (NSP) for pre-training.",
+    "source_paper": "BERT"
+  },
+  {
+    "question": "What does RAG stand for and what problem does it solve?",
+    "expected_answer": "RAG stands for Retrieval-Augmented Generation. It combines a retrieval component with a generator to produce more factual and specific text than standard language models.",
+    "source_paper": "Retrieval-Augmented Generation"
+  },
+  {
+    "question": "What are the two RAG model variants?",
+    "expected_answer": "The two RAG variants are RAG-Sequence, which uses the same retrieved document for the entire sequence, and RAG-Token, which can use different documents for each token.",
+    "source_paper": "Retrieval-Augmented Generation"
+  },
+  {
+    "question": "What is the Dense Passage Retriever and how does RAG use it?",
+    "expected_answer": "RAG uses a Dense Passage Retriever (DPR) as its retrieval component to retrieve relevant documents.",
+    "source_paper": "Retrieval-Augmented Generation"
+}
+]
